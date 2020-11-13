@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-sm-3">
+        <p class="m-2"><img [src]="'/assets/images/S.jpg'" width="12px" height="12px"> Sedate Points</p>
+        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
+            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedSPoints"
+            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Circle, Sizes.VERYSMALL)"
+            (remove)="removePoint($event)" [clearable] = "false">
+            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items">
+                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
+                    <span class="ng-value-label"><img [src]="'/assets/images/S.jpg'" width="12px" height="12px">
+                        {{item.name}}</span> 
+                </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+                <img [src]="'/assets/images/S.jpg'" width="12px" height="12px"> {{item.name}}
+            </ng-template>
+        </ng-select>
+    </div>
+
+    <div class="col-sm-3">
+        <p class="m-2"><img [src]="'/assets/images/T.jpg'" width="12px" height="12px"> Tone Points</p>
+        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
+            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedTPoints"
+            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Red,Shape.Circle, Sizes.VERYSMALL)"
+            (remove)="removePoint($event)" [clearable] = "false">
+            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items">
+                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
+                    <span class="ng-value-label"><img [src]="'/assets/images/T.jpg'" width="12px" height="12px">
+                        {{item.name}}</span> 
+                </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+                <img [src]="'/assets/images/T.jpg'" width="12px" height="12px"> {{item.name}}
+            </ng-template>
+        </ng-select>
+    </div>
+
+    <div class="col-sm-3">
+        <p class="m-2"><img [src]="'/assets/images/M.jpg'" width="12px" height="12px"> Methi Points</p>
+        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
+            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedMPoints"
+            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Square, Sizes.SMALL)"
+            (remove)="removePoint($event)" [clearable] = "false">
+            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                <div class="ng-value" *ngFor="let item of items">
+                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
+                    <span class="ng-value-label"><img [src]="'/assets/images/M.jpg'" width="12px" height="12px">
+                        {{item.name}}</span> 
+                </div>
+            </ng-template>
+            <ng-template ng-option-tmp let-item="item" let-index="index">
+                <img [src]="'/assets/images/M.jpg'" width="12px" height="12px"> {{item.name}}
+            </ng-template>
+        </ng-select>
+    </div>
+</div>
