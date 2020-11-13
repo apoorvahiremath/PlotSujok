@@ -5,11 +5,12 @@ import { DownloadChartService } from './services/download-chart/download-chart.s
 import { MeredianSelectComponent } from './components/meredian-select/meredian-select.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { ManualPlotingComponent } from './components/manual-ploting/manual-ploting.component';
 
 
 
 @NgModule({
-  declarations: [MeredianSelectComponent],
+  declarations: [MeredianSelectComponent, ManualPlotingComponent],
   imports: [
     CommonModule,
     NgSelectModule,
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[
     MeredianSelectComponent,
+    ManualPlotingComponent,
     NgSelectModule,
     FormsModule, 
   ],

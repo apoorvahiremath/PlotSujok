@@ -53,9 +53,11 @@ export class ByolChartComponent implements OnInit {
 
   }
 
-  setPointer(pointer, size){
-    this.selectedPointer = pointer;
-    this.pointerSize = size;
+  setPointer(event){
+    if(event){
+      this.selectedPointer = event.pointer;
+      this.pointerSize = event.size;
+    }
   }
 
   clearPointer(){

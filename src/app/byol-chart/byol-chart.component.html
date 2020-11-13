@@ -1,65 +1,8 @@
-<div class="row mt-4">
-    <div class="col-sm-4">
-        <h5>Plot Points through selections</h5>
-        <hr>
-    </div>
-</div>
+
 <meredian-select (pointAdded)="selectPoint($event)" (pointRemoved)="removePoint($event)"></meredian-select>
 
-
-<div class="row mt-4">
-    <div class="col-sm-4">
-        <h5>Plot Points Manually</h5>
-        <hr>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-9">
-        <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.VERYSMALL)"
-                [ngClass]="selectedPointer=== 'S' && pointerSize === 'SMALL'? 'active':''">
-                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="9px" height="9px">
-            </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.SMALL)"
-                [ngClass]="selectedPointer=== 'S' && pointerSize === 'MEDIUM'? 'active':''">
-                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="12px" height="12px">
-            </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.MEDIUM)"
-                [ngClass]="selectedPointer=== 'S' && pointerSize === 'LARGE'? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="16px" height="16px">
-            </label>
-
-            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.VERYSMALL)"
-                [ngClass]="selectedPointer=== 'T' && pointerSize === 'SMALL'? 'active':''">
-                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="9px" height="9px">
-            </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.SMALL)"
-                [ngClass]="selectedPointer=== 'T' && pointerSize === 'MEDIUM'? 'active':''">
-                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="12px" height="12px">
-            </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.MEDIUM)"
-                [ngClass]="selectedPointer=== 'T' && pointerSize === 'LARGE'? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="16px" height="16px">
-            </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('M', Sizes.SMALL)"
-                [ngClass]="selectedPointer=== 'M' && pointerSize === 'LARGE'? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/M.jpg'"
-                    width="12px" height="12px">
-            </label>
-        </div>
-    </div>
-
-    <div class="col-sm-1">
-        <button *ngIf="selectedPointer" class=" btn btn-danger" (click)="clearPointer()">X</button>
-    </div>
-</div>
+<manual-ploting (setPointerStyle)="setPointer($event)" (clearPointerStyle)="clearPointer()"></manual-ploting>
+ 
 <div class="row mt-4">
     <div class="col-sm-4">
         <h5>Generated Protocol</h5>
