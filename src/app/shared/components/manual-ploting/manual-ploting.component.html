@@ -10,44 +10,46 @@
         <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
             <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.VERYSMALL)"
                 [ngClass]="selectedPointer=== 'S' && pointerSize === Sizes.VERYSMALL? 'active':''">
-                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="9px" height="9px">
+                <input type="radio" name="options" id="option1" autocomplete="off">
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Blue"></i>
             </label>
             <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.SMALL)"
                 [ngClass]="selectedPointer=== 'S' && pointerSize ===  Sizes.SMALL? 'active':''">
-                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="12px" height="12px">
+                <input type="radio" name="options" id="option2" autocomplete="off"> 
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.SMALL * 2" [style.color]="Color.Blue"></i>
             </label>
             <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.MEDIUM)"
                 [ngClass]="selectedPointer=== 'S' && pointerSize === Sizes.MEDIUM? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
-                    width="16px" height="16px">
+                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.MEDIUM * 2" [style.color]="Color.Blue"></i>
             </label>
 
             <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.VERYSMALL)"
                 [ngClass]="selectedPointer=== 'T' && pointerSize ===  Sizes.VERYSMALL ? 'active':''">
-                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="9px" height="9px">
+                <input type="radio" name="options" id="option1" autocomplete="off"> 
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Red"></i>
             </label>
             <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.SMALL)"
                 [ngClass]="selectedPointer=== 'T' && pointerSize === Sizes.SMALL ? 'active':''">
-                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="12px" height="12px">
+                <input type="radio" name="options" id="option2" autocomplete="off"> 
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.SMALL * 2" [style.color]="Color.Red"></i>
+                
             </label>
             <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.MEDIUM)"
                 [ngClass]="selectedPointer=== 'T' && pointerSize === Sizes.MEDIUM ? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
-                    width="16px" height="16px">
+                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                <i class="fa fa-circle" [style.font-size.px]="Sizes.MEDIUM * 2" [style.color]="Color.Red"></i>
             </label>
             <label class="btn  btn-outline-secondary" (click)="setPointer('M', Sizes.SMALL)"
                 [ngClass]="selectedPointer=== 'M' && pointerSize === Sizes.SMALL? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/M.jpg'"
-                    width="12px" height="12px">
+                <input type="radio" name="options" id="option3" autocomplete="off"> 
+                <i class="far fa-square" [style.font-size.px]="Sizes.MEDIUM" [style.color]="Color.Blue"></i>
+                
             </label>
         </div>
     </div>
 
     <div class="col-sm-1">
-        <button *ngIf="selectedPointer" class=" btn btn-danger" (click)="clearPointer()">X</button>
+        <button *ngIf="selectedPointer" class=" btn btn-danger" (click)="clearPointer()"><i class="fa fa-times"></i></button>
     </div>
 </div>
