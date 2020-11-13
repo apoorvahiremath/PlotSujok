@@ -6,74 +6,6 @@
 </div>
 <meredian-select (pointAdded)="selectPoint($event)" (pointRemoved)="removePoint($event)"></meredian-select>
 
-<!-- <div class="row">
-    <div class="col-sm-3">
-        <p class="m-2"><img [src]="'/assets/images/S.jpg'" width="12px" height="12px"> Sedate Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedSPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Circle, Sizes.VERYSMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label"><img [src]="'/assets/images/S.jpg'" width="12px" height="12px">
-                        {{item.name}}</span>
-
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <img [src]="'/assets/images/S.jpg'" width="12px" height="12px"> {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="col-sm-3">
-        <p class="m-2"><img [src]="'/assets/images/T.jpg'" width="12px" height="12px"> Tone Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedTPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Red,Shape.Circle, Sizes.VERYSMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label"><img [src]="'/assets/images/T.jpg'" width="12px" height="12px">
-                        {{item.name}}</span>
-
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <img [src]="'/assets/images/T.jpg'" width="12px" height="12px"> {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="col-sm-3">
-        <p class="m-2"><img [src]="'/assets/images/M.jpg'" width="12px" height="12px"> Methi Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedMPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Square, Sizes.SMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label"><img [src]="'/assets/images/M.jpg'" width="12px" height="12px">
-                        {{item.name}}</span>
-
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <img [src]="'/assets/images/M.jpg'" width="12px" height="12px"> {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div> 
-
-      <div class="col-sm-1 d-flex flex-column">
-        <button class="btn btn-primary mt-auto" (click)="plotPoints()">Add</button>
-    </div>  
-    <div class="col-sm-1 d-flex flex-column">
-          <button class="btn btn-danger mt-auto" (click)="clearPoints()">Clear</button> 
-    </div>
-</div>-->
 
 <div class="row mt-4">
     <div class="col-sm-4">
@@ -82,43 +14,48 @@
     </div>
 </div>
 
-<div class="row"> 
+<div class="row">
     <div class="col-sm-9">
-        <!-- <button (click)="setPointer('S')" class="mx-2 btn btn-block btn-light" [ngClass]="selectedPointer=== 'S'? 'active':''"><img [src]="'/assets/images/S.jpg'" width="12px" height="12px"> Sedate Points</button> -->
         <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.VERYSMALL)" [ngClass]="selectedPointer=== 'S' && pointerSize === 'SMALL'? 'active':''">
-              <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/S.jpg'" width="9px" height="9px">
+            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.VERYSMALL)"
+                [ngClass]="selectedPointer=== 'S' && pointerSize === 'SMALL'? 'active':''">
+                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
+                    width="9px" height="9px">
             </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.SMALL)" [ngClass]="selectedPointer=== 'S' && pointerSize === 'MEDIUM'? 'active':''">
-              <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/S.jpg'" width="12px" height="12px">
+            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.SMALL)"
+                [ngClass]="selectedPointer=== 'S' && pointerSize === 'MEDIUM'? 'active':''">
+                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
+                    width="12px" height="12px">
             </label>
-            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.MEDIUM)" [ngClass]="selectedPointer=== 'S' && pointerSize === 'LARGE'? 'active':''">
-              <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/S.jpg'" width="16px" height="16px">
+            <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.MEDIUM)"
+                [ngClass]="selectedPointer=== 'S' && pointerSize === 'LARGE'? 'active':''">
+                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/S.jpg'"
+                    width="16px" height="16px">
             </label>
 
-            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.VERYSMALL)" [ngClass]="selectedPointer=== 'T' && pointerSize === 'SMALL'? 'active':''">
-                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/T.jpg'" width="9px" height="9px">
-              </label>
-              <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.SMALL)" [ngClass]="selectedPointer=== 'T' && pointerSize === 'MEDIUM'? 'active':''">
-                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/T.jpg'" width="12px" height="12px">
-              </label>
-              <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.MEDIUM)" [ngClass]="selectedPointer=== 'T' && pointerSize === 'LARGE'? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/T.jpg'" width="16px" height="16px">
-              </label>
-              <label class="btn  btn-outline-secondary" (click)="setPointer('M', Sizes.SMALL)" [ngClass]="selectedPointer=== 'M' && pointerSize === 'LARGE'? 'active':''">
-                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/M.jpg'" width="12px" height="12px">
-              </label>
-          </div>
+            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.VERYSMALL)"
+                [ngClass]="selectedPointer=== 'T' && pointerSize === 'SMALL'? 'active':''">
+                <input type="radio" name="options" id="option1" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
+                    width="9px" height="9px">
+            </label>
+            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.SMALL)"
+                [ngClass]="selectedPointer=== 'T' && pointerSize === 'MEDIUM'? 'active':''">
+                <input type="radio" name="options" id="option2" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
+                    width="12px" height="12px">
+            </label>
+            <label class="btn  btn-outline-secondary" (click)="setPointer('T', Sizes.MEDIUM)"
+                [ngClass]="selectedPointer=== 'T' && pointerSize === 'LARGE'? 'active':''">
+                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/T.jpg'"
+                    width="16px" height="16px">
+            </label>
+            <label class="btn  btn-outline-secondary" (click)="setPointer('M', Sizes.SMALL)"
+                [ngClass]="selectedPointer=== 'M' && pointerSize === 'LARGE'? 'active':''">
+                <input type="radio" name="options" id="option3" autocomplete="off"> <img [src]="'/assets/images/M.jpg'"
+                    width="12px" height="12px">
+            </label>
+        </div>
     </div>
 
-    <!-- <div class="col-sm-3">
-        <button (click)="setPointer('T')" class="m-2 btn btn-block btn-light" [ngClass]="selectedPointer=== 'T'? 'active':'btn-light'"><img [src]="'/assets/images/T.jpg'" width="12px" height="12px"> Tone Points</button>
-    </div> 
-
-    <div class="col-sm-3">
-        <button (click)="setPointer('M')" class="m-2 btn btn-block btn-light" [ngClass]="selectedPointer=== 'M'? 'active':'btn-light'"><img [src]="'/assets/images/M.jpg'" width="12px" height="12px"> Methi Points</button>
-    </div>
--->
     <div class="col-sm-1">
         <button *ngIf="selectedPointer" class=" btn btn-danger" (click)="clearPointer()">X</button>
     </div>
@@ -138,7 +75,7 @@
 </div>
 
 <div class="row mt-4">
-    <div class="col-sm-4"> 
+    <div class="col-sm-4">
         <hr>
         <button class="m-2 btn btn-primary" (click)="putImage()">Save Image</button>
         <button class="m-2 btn btn-danger " (click)="clearPoints()">Clear Points</button>
@@ -146,14 +83,6 @@
     </div>
 </div>
 
-
-<!-- <canvas id="canvas" width="856" height="1240" (click)="plotPointManually($event)"
-    [ngClass]="selectedPointer === 'S'? 's-cursor': selectedPointer === 'T'?'t-cursor' : selectedPointer === 'M'? 'm-cursor': ''"
-    style="background:url(/assets/images/test_2.jpg) no-repeat"></canvas> -->
-
 <canvas id="canvas" width="1240" height="856" (click)="plotPointManually($event)"
     [ngClass]="selectedPointer === 'S'? 's-cursor': selectedPointer === 'T'?'t-cursor' : selectedPointer === 'M'? 'm-cursor': ''"
     style="background:url(/assets/images/test_2.jpg) no-repeat"></canvas>
-<!-- <canvas id="canvas" width="2480" height="1713" (click)="getPosition1($event)"
-    style="cursor:crosshair;background:url(/assets/images/test_1.jpg)"></canvas> -->
-

@@ -12,10 +12,7 @@ import { SelectedPoint } from '../shared/models/selected-point.model';
   templateUrl: './byol-chart.component.html',
   styleUrls: ['./byol-chart.component.scss']
 })
-export class ByolChartComponent implements OnInit {
-  // pointSize = 7;
-  // element: Element;
-  // root: Element;
+export class ByolChartComponent implements OnInit { 
   ctx;
   canvas;
   points = tcmLeftMeredian;
@@ -39,8 +36,7 @@ export class ByolChartComponent implements OnInit {
     this.initCanvas();   
   }
 
-  initCanvas(){
-    // this.element = <Element>this.root;
+  initCanvas(){ 
     this.canvas = <HTMLCanvasElement>document.getElementById(this.chartCanvasId); 
     this.ctx = this.canvas.getContext("2d");  
   }
@@ -49,49 +45,7 @@ export class ByolChartComponent implements OnInit {
   putImage() {
     this.downloadChartService.downloadImageChart(this.chartCanvasId);
   }
- 
-  // plotPoints(){  
-  //   // Clear Canvas
-  //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //   //Plot points
-  //   if(this.selectedSPoints && this.selectedSPoints.length > 0){
-  //     this.selectedSPoints.forEach((point) => {
-  //       this.selectedPoints.push({
-  //         ...point,
-  //         color: Color.Blue,
-  //         share: Shape.Circle,
-  //         size: Sizes.VERYSMALL
-  //       })
-  //       this.drawPointService.drawCoordinates(this.ctx, point.x, point.y, Color.Blue, Shape.Circle, Sizes.VERYSMALL);
-  //     });
-  //   }
-
-  //   if(this.selectedTPoints && this.selectedTPoints.length > 0){
-  //     this.selectedTPoints.forEach((point) => {
-  //       this.selectedPoints.push({
-  //         ...point,
-  //         color: Color.Red,
-  //         share: Shape.Circle,
-  //         size: Sizes.VERYSMALL
-  //       })
-  //       this.drawPointService.drawCoordinates(this.ctx, point.x, point.y, Color.Red, Shape.Circle, Sizes.VERYSMALL);
-  //     });
-  //   }
-
-  //   if(this.selectedMPoints && this.selectedMPoints.length > 0){
-  //     this.selectedMPoints.forEach((point) => {
-  //       this.selectedPoints.push({
-  //         ...point,
-  //         color: Color.Blue,
-  //         share: Shape.Square,
-  //         size: Sizes.SMALL
-  //       })
-  //       this.drawPointService.drawCoordinates(this.ctx, point.x, point.y, Color.Blue, Shape.Square, Sizes.SMALL);
-  //     });
-  //   }
-
-  // }
-
+  
 
   clearPoints(){
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -135,27 +89,7 @@ export class ByolChartComponent implements OnInit {
 
 
   }
-
-  // selectPoint(event, color, shape, size){ 
-  //   if(event){
-  //     this.selectedPoints.push({...event, color, shape, size});
-  //     this.drawPointService.drawCoordinates(this.ctx, event.x, event.y, color, shape, size);
-  //   }
-  // }
-
-  // removePoint(event){
-  //   console.log(event);
-    
-  //   if(event && event.value){
-  //     this.selectedPoints = this.selectedPoints.filter(point =>{
-  //       return (point.x !== event.value.x && point.y !== event.value.y)
-  //     });
-  //     this.redrawSelectedPoints();
-  //   }
-  // }
-
-
-  
+ 
   selectPoint(event){ 
     if(event){
       this.selectedPoints.push(event);
@@ -163,9 +97,7 @@ export class ByolChartComponent implements OnInit {
     }
   }
 
-  removePoint(event){
-    console.log(event);
-    
+  removePoint(event){ 
     if(event){
       this.selectedPoints = this.selectedPoints.filter(point =>{
         return (point.x !== event.x && point.y !== event.y)
