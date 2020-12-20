@@ -1,5 +1,5 @@
 export enum Sizes {
-    VERYSMALL = 5,
+    VERYSMALL = 4,
     SMALL = 7,
     MEDIUM = 10,
     LARGE = 13,

@@ -3,8 +3,7 @@ import { DownloadChartService } from '../shared/services/download-chart/download
 import { DrawPointService } from '../shared/services/draw-point/draw-point.service';
 import { Sizes } from '../shared/enums/sizes.enum'
 import { Color } from '../shared/enums/color.enum'
-import { Shape } from '../shared/enums/shape.enum'
-import { tcmLeftMeredian } from '../shared/data/tcm-left'
+import { Shape } from '../shared/enums/shape.enum' 
 import { SelectedPoint } from '../shared/models/selected-point.model';
 
 @Component({
@@ -14,8 +13,7 @@ import { SelectedPoint } from '../shared/models/selected-point.model';
 })
 export class ByolChartComponent implements OnInit { 
   ctx;
-  canvas;
-  points = tcmLeftMeredian;
+  canvas; 
 
  
   selectedPoints: SelectedPoint[] = [];
