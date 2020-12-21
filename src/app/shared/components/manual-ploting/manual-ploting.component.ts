@@ -22,6 +22,17 @@ export class ManualPlotingComponent implements OnInit {
   @Output()
   clearPointerStyle = new EventEmitter();
 
+  pointerList = [
+    { type: 'S', size: Sizes.VERYSMALL, color: Color.Blue, shape: Shape.Circle},
+    { type: 'S', size: Sizes.SMALL, color: Color.Blue, shape: Shape.Circle},
+    { type: 'S', size: Sizes.MEDIUM, color: Color.Blue, shape: Shape.Circle},
+    { type: 'T', size: Sizes.VERYSMALL, color: Color.Red, shape: Shape.Circle},
+    { type: 'T', size: Sizes.SMALL, color: Color.Red, shape: Shape.Circle},
+    { type: 'T', size: Sizes.MEDIUM, color: Color.Red, shape: Shape.Circle},
+    { type: 'M', size: Sizes.MEDIUM, color: Color.Blue, shape: Shape.Square},
+
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

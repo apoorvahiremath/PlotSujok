@@ -6,6 +6,7 @@ import { MeredianSelectComponent } from './components/meredian-select/meredian-s
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { ManualPlotingComponent } from './components/manual-ploting/manual-ploting.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 
 
@@ -14,13 +15,14 @@ import { ManualPlotingComponent } from './components/manual-ploting/manual-ploti
   imports: [
     CommonModule,
     NgSelectModule,
-    FormsModule,     
+    FormsModule, 
+    PopoverModule    
   ],
   exports:[
     MeredianSelectComponent,
     ManualPlotingComponent,
     NgSelectModule,
-    FormsModule, 
+    FormsModule,  
   ],
   providers: [DrawPointService, DownloadChartService]
 })

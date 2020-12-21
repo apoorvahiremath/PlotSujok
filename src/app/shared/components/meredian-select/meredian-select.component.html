@@ -4,7 +4,7 @@
         <hr>
     </div>
 </div>
-<div class="row">
+<!-- <div class="row">
     <div class="col-sm-3">
         <p class="m-2"><i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Blue"></i> Sedate Points</p>
         <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
@@ -64,4 +64,56 @@
             </ng-template>
         </ng-select>
     </div>
+</div> -->
+
+<div class="row">
+    <div class="col">
+        <button *ngFor="let meredian of meredianList" 
+            class="btn btn-light badge m-1 px-4 py-2" 
+            [style.color]="meredian.color"
+            [style.font-size.px]="16"
+            (click)="selectMeredian(meredian)"
+            >
+            <!-- <i class="fa fa-circle" [style.font-size.px]="12" [style.color]="meredian.color"></i> -->
+            {{meredian.name}}</button>
+        <button *ngIf="selectedMeredian" class="btn btn-danger ml-2" (click)="clearMeredian()"><i class="fa fa-times"></i></button>
+        
+    </div>
 </div>
+<div class="row my-3" *ngIf="selectedMeredian">
+    <div class="col">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded"> 
+              <h5 class="card-title">{{selectedMeredian.name}} Points</h5> 
+              <div class="card-text" *ngIf='selectedMeredianPoints?.length'>
+                <button *ngFor="let point of selectedMeredianPoints" 
+                class="btn badge badge-pill badge-light m-1 px-3 py-2" 
+                [style.color]="selectedMeredian.color"
+                [style.font-size.px]="12" 
+                [popover]="popTemplate" 
+                popoverTitle="Select the method"
+                [outsideClick]="true"
+                (click)="setPoint(point);"
+                #pop2="bs-popover"
+                >
+                {{point.name}}</button>
+              </div>     
+          </div>
+    </div>
+</div>
+
+<ng-template #popTemplate> 
+        <div class="row" *ngIf="this.selectedPoint">
+            <div class="col-4" *ngFor="let method of methodList">
+                <button class="btn btn-light" (click)="setMethod(method);">
+                    <i 
+                    [ngClass]="method.shape === Shape.Square ? 'far fa-square':'fa fa-circle'" 
+                    [style.font-size.px]="method.size" 
+                    [style.color]="method.color"></i>
+                </button>
+            </div> 
+        </div> 
+</ng-template>
+<!-- <button type="button" class="btn btn-success"
+        [popover]="popTemplate" popoverTitle="Dynamic html inside">
+  Show me popover with html
+</button> -->

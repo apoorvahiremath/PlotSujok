@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-9">
+    <!-- <div class="col-sm-9">
         <div class="btn-group btn-group-toggle btn-block" data-toggle="buttons">
             <label class="btn  btn-outline-secondary" (click)="setPointer('S', Sizes.VERYSMALL)"
                 [ngClass]="selectedPointer=== 'S' && pointerSize === Sizes.VERYSMALL? 'active':''">
@@ -48,8 +48,22 @@
             </label>
         </div>
     </div>
-
     <div class="col-sm-1">
         <button *ngIf="selectedPointer" class=" btn btn-danger" (click)="clearPointer()"><i class="fa fa-times"></i></button>
     </div>
+-->
+
+    <div class="col">
+        <button *ngFor="let pointer of pointerList" 
+            class="btn btn-light badge m-1 px-4 py-2"  
+            (click)="setPointer(pointer.type, pointer.size)"
+            >
+            <i  [ngClass]="pointer.shape === Shape.Square ? 'far fa-square':'fa fa-circle'"  
+            [style.font-size.px]="pointer.shape === Shape.Square ? pointer.size : pointer.size * 2 " [style.color]="pointer.color"></i>
+        </button> 
+        <button *ngIf="selectedPointer" class=" btn btn-danger ml-2" (click)="clearPointer()"><i class="fa fa-times"></i></button>
+         
+    </div>
+
+   
 </div>

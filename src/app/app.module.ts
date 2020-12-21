@@ -11,7 +11,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-
+import { PopoverModule} from 'ngx-bootstrap/popover';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     AppRoutingModule,
     SharedModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PopoverModule.forRoot()
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

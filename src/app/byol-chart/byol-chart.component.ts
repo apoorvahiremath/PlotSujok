@@ -5,6 +5,7 @@ import { Sizes } from '../shared/enums/sizes.enum'
 import { Color } from '../shared/enums/color.enum'
 import { Shape } from '../shared/enums/shape.enum' 
 import { SelectedPoint } from '../shared/models/selected-point.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'byol-chart',
@@ -27,7 +28,8 @@ export class ByolChartComponent implements OnInit {
   chartCanvasId = 'canvas'
   constructor(
     private drawPointService: DrawPointService,
-    private downloadChartService: DownloadChartService
+    private downloadChartService: DownloadChartService,
+    private toastr: ToastrService
     ){ }
 
   ngOnInit() {
@@ -92,16 +94,33 @@ export class ByolChartComponent implements OnInit {
  
   selectPoint(event){ 
     if(event){
+      if(this.pointExists(event)){
+        this.toastr.error(event.name + ' already selected');
+        return;
+      }
       this.selectedPoints.push(event);
       this.drawPointService.drawCoordinates(this.ctx, event.x, event.y,  event.color,  event.shape,  event.size);
     }
   }
 
+  pointExists(newPoint){
+    let pt = this.selectedPoints.find(point =>{
+      return (newPoint.x == point.x && newPoint.y == point.y)
+    });
+    return pt ? true: false;
+  }
+
   removePoint(event){ 
+    console.log(this.selectedPoints);
+
     if(event){
       this.selectedPoints = this.selectedPoints.filter(point =>{
-        return (point.x !== event.x && point.y !== event.y)
+        return !(point.x == event.x && point.y == event.y)
       });
+      console.log(event);
+      console.log(this.selectedPoints);
+      
+      
       this.redrawSelectedPoints();
     }
   }
