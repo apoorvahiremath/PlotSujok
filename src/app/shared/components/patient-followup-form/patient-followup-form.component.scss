@@ -1,4 +1,10 @@
 .form-layout{
     margin: auto;
-  width: 50%;
+    width: 50%;
+}
+@media screen and (min-width: 300px) and (max-width: 800px){
+ 
+  .form-layout {
+    width: 80%;
+  }
 }

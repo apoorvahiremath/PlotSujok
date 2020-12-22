@@ -25,11 +25,12 @@
 </div>
 
 <div class="row mt-4">
-    <div class="col-sm-4">
+    <div class="col-sm-6"  *ngIf="selectedPoints?.length > 0" >
         <hr>
-        <button class="m-2 btn btn-sm btn-primary" (click)="putImage()"><i class="fa fa-save"></i> Save Image</button>
-        <button *ngIf="selectedPoints?.length > 0" class="m-2 btn btn-sm btn-danger " (click)="clearPoints()"><i class="fa fa-times"></i> Clear Points</button>
-
+        <button *ngIf="allowSetSequence === true;" class="m-2 btn btn-sm btn-success" (click)="allowSetSequence = false;"><i class="fa fa-save"></i> Save Sequence</button>
+        <button *ngIf="allowSetSequence === false;" class="m-2 btn btn-sm btn-success" (click)="allowSetSequenceSet();"><i class="fas fa-edit"></i> Draw Sequence</button>
+        <button *ngIf="allowSetSequence === false;" class="m-2 btn btn-sm btn-primary" (click)="putImage()"><i class="fa fa-save"></i> Save Image</button>
+        <button *ngIf="allowSetSequence === false;" class="m-2 btn btn-sm btn-danger " (click)="clearPoints()"><i class="fa fa-times"></i> Clear Points</button>
     </div>
 </div>
 

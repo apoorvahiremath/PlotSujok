@@ -1,7 +1,7 @@
-Save name, date, mobile, casepaper#
-Sequencing
-Mobile view
-Adding all points
+Save name, date, mobile, casepaper# - Done
+Sequencing - Done
+Mobile view - Done 
+Adding all points - Partially Done
 Color therapy
 Adding 4 charts
 Deployment

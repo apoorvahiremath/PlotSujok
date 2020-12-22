@@ -28,6 +28,11 @@ export class ByolChartComponent implements OnInit {
 
   chartCanvasId = 'canvas'
   followupPatient;
+  
+  count = 1;
+  allowSetSequence = false;
+
+
   constructor(
     private drawPointService: DrawPointService,
     private downloadChartService: DownloadChartService,
@@ -37,18 +42,22 @@ export class ByolChartComponent implements OnInit {
 
   ngOnInit() {
     this.initCanvas(); 
+    this.followupPatient = this.patientStateService.followupPatientSubject.value;   
     this.addPatientDetailsToCanvas();  
   }
 
+  //****************************** Initialize component ********************* */
+  // Initializes the Canvas
   initCanvas(){ 
     this.canvas = <HTMLCanvasElement>document.getElementById(this.chartCanvasId); 
     this.ctx = this.canvas.getContext("2d");  
   }
  
+  // Adds Patient details to Canvas form fields
   addPatientDetailsToCanvas(){
-    this.followupPatient = this.patientStateService.followupPatientSubject.value;   
     // this.ctx.translate(100,100);  
     // this.ctx.save(); 
+    this.allowSetSequence = false;
     if(this.followupPatient){
       this.ctx.rotate(Math.PI);  
       this.ctx.font = "18px Comic Sans MS";
@@ -57,63 +66,15 @@ export class ByolChartComponent implements OnInit {
       this.ctx.fillText(this.followupPatient.prc, -436, -785); 
       this.ctx.fillText(this.followupPatient.date, -201, -785); 
       this.ctx.rotate(Math.PI);  
-
       this.ctx.restore();
     }
     
   }
+  //***************************************************************************** */
 
 
-  putImage() {
-    this.downloadChartService.downloadImageChart(this.chartCanvasId);
-  }
-  
-
-  clearPoints(){
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.selectedPoints = []; 
-
-  }
-
-  setPointer(event){
-    if(event){
-      this.selectedPointer = event.pointer;
-      this.pointerSize = event.size;
-    }
-  }
-
-  clearPointer(){
-    this.selectedPointer = null;
-    this.pointerSize = null;
-  }
-
-  plotPointManually(event){
-    if(!this.selectedPointer)
-      return;
-    const x = event.offsetX;
-    const y = event.offsetY;
-    let color, shape, size = this.pointerSize;
-    switch (this.selectedPointer){
-      case 'S':
-        color = Color.Blue;
-        shape = Shape.Circle;
-        break;
-      case 'T':
-        color = Color.Red;
-        shape = Shape.Circle; 
-        break;
-      case 'M':
-        color = Color.Blue;
-        shape = Shape.Square; 
-        break;
-
-    }
-    this.selectedPoints.push({x, y, color, size, shape});
-    this.drawPointService.drawCoordinates(this.ctx, x, y, color, shape, size);
-
-
-  }
- 
+  //******************** Handle events from Meredian Component********************* */
+  // Set selected point on graph
   selectPoint(event){ 
     if(event){
       if(this.pointExists(event)){
@@ -125,6 +86,7 @@ export class ByolChartComponent implements OnInit {
     }
   }
 
+  // This is utility fuction to check if point is already added in protocol
   pointExists(newPoint){
     let pt = this.selectedPoints.find(point =>{
       return (newPoint.x == point.x && newPoint.y == point.y)
@@ -132,27 +94,103 @@ export class ByolChartComponent implements OnInit {
     return pt ? true: false;
   }
 
-  removePoint(event){ 
-    console.log(this.selectedPoints);
-
+  // Removes the selected from protocol and graph
+  removePoint(event){  
     if(event){
       this.selectedPoints = this.selectedPoints.filter(point =>{
         return !(point.x == event.x && point.y == event.y)
-      });
-      console.log(event);
-      console.log(this.selectedPoints);
-      
+      }); 
       
       this.redrawSelectedPoints();
     }
   }
 
+  // Utility fuction to redraw point when point is removed from the protocol
   redrawSelectedPoints(){
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.addPatientDetailsToCanvas();
     if(this.selectedPoints && this.selectedPoints.length > 0){
       this.selectedPoints.forEach(point =>{
         this.drawPointService.drawCoordinates(this.ctx, point.x, point.y, point.color, point.shape, point.size);
       })
     }
   }
+
+  //***************************************************************************** */
+
+
+  //******************** Handle events from Meredian Component********************* */
+  // Fuction that takes event from Manual Pointer, set the poiter shape and size
+  setPointer(event){
+    if(event){
+      this.allowSetSequence = false;
+      this.selectedPointer = event.pointer;
+      this.pointerSize = event.size;
+    }
+  }
+
+  // Fuction clears the Pointer params
+  clearPointer(){
+    this.selectedPointer = null;
+    this.pointerSize = null;
+  }
+
+  // This functions catches the event from Canvas and draws pointer on Canvas
+  // This functions also handles Sequence drawing functionality
+  plotPointManually(event){
+    if(this.allowSetSequence){
+      this.clearPointer();
+      const x = event.offsetX;
+      const y = event.offsetY;
+      this.drawPointService.drawPointSequence(this.ctx, x, y, this.count)
+      this.count++;
+    }else{
+      if(!this.selectedPointer)
+        return;
+      const x = event.offsetX;
+      const y = event.offsetY;
+      let color, shape, size = this.pointerSize;
+      switch (this.selectedPointer){
+        case 'S':
+          color = Color.Blue;
+          shape = Shape.Circle;
+          break;
+        case 'T':
+          color = Color.Red;
+          shape = Shape.Circle; 
+          break;
+        case 'M':
+          color = Color.Blue;
+          shape = Shape.Square; 
+          break;
+      }
+      this.selectedPoints.push({x, y, color, size, shape});
+      this.drawPointService.drawCoordinates(this.ctx, x, y, color, shape, size);
+    }    
+  }
+
+  allowSetSequenceSet(){
+    this.allowSetSequence = true;
+    this.clearPointer();
+  }
+  
+
+  //***************************************************************************** */
+  
+
+  //*********************************Buttons*********************************** */
+  // Function downloads the image
+  putImage() {
+    this.downloadChartService.downloadImageChart(this.chartCanvasId, this.followupPatient.name, 'LeftTMC');
+  }
+  
+  // Function clears the complete canvas and selected protocol
+  clearPoints(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.selectedPoints = []; 
+    this.count = 1;
+    this.clearPointer();
+    this.addPatientDetailsToCanvas();
+  }
+  
 }

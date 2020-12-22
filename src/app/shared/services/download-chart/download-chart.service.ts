@@ -14,12 +14,12 @@ export class DownloadChartService {
   }
 
 
-  downloadImageChart(chartCanvasId: string) {
+  downloadImageChart(chartCanvasId: string, name: string, chartType: string) {
     domtoimage.toJpeg(document.getElementById(chartCanvasId), { quality: 0.95 })
     .then((dataUrl) =>{
         var me = this;
         var link = document.createElement('a');
-        link.download = 'my-image-name_' + me.dateFormat(new Date()) + '.jpeg';
+        link.download = name + '-' + chartType + '-' + me.dateFormat(new Date()) + '.jpeg';
         link.href = dataUrl;
         link.click();
     });
