@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { PopoverModule} from 'ngx-bootstrap/popover';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 import { TreatmentComponent } from './treatment/treatment.component';
 import { PaitentDataGuard } from './treatment/guards/patient-data.guard';
 @NgModule({
@@ -28,7 +30,8 @@ import { PaitentDataGuard } from './treatment/guards/patient-data.guard';
     SharedModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    PopoverModule.forRoot()
+    PopoverModule.forRoot(),
+    TabsModule.forRoot()
   ],
   providers: [DatePipe, PaitentDataGuard],
   bootstrap: [AppComponent]

@@ -10,6 +10,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { PatientFollowupFormComponent } from './components/patient-followup-form/patient-followup-form.component';
 import { FormErrorService } from './services/form-error/form-error.service';
 import { PatientStateService } from './services/patient-state/patient-state.service';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 
@@ -20,7 +21,8 @@ import { PatientStateService } from './services/patient-state/patient-state.serv
     NgSelectModule,
     FormsModule, 
     PopoverModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    TabsModule
   ],
   exports:[
     MeredianSelectComponent,
