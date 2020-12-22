@@ -119,7 +119,7 @@ export class ByolChartComponent implements OnInit {
   //***************************************************************************** */
 
 
-  //******************** Handle events from Manual plot Component********************* */
+  //******************** Handle events from Meredian Component********************* */
   // Fuction that takes event from Manual Pointer, set the poiter shape and size
   setPointer(event){
     if(event){
