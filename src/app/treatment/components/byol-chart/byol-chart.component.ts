@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DownloadChartService } from '../shared/services/download-chart/download-chart.service';
-import { DrawPointService } from '../shared/services/draw-point/draw-point.service';
-import { Sizes } from '../shared/enums/sizes.enum'
-import { Color } from '../shared/enums/color.enum'
-import { Shape } from '../shared/enums/shape.enum' 
-import { SelectedPoint } from '../shared/models/selected-point.model';
+import { DownloadChartService } from '../../../shared/services/download-chart/download-chart.service';
+import { DrawPointService } from '../../../shared/services/draw-point/draw-point.service';
+import { Sizes } from '../../../shared/enums/sizes.enum'
+import { Color } from '../../../shared/enums/color.enum'
+import { Shape } from '../../../shared/enums/shape.enum' 
+import { SelectedPoint } from '../../../shared/models/selected-point.model';
 import { ToastrService } from 'ngx-toastr';
+import { PatientStateService } from '../../../shared/services/patient-state/patient-state.service';
 
 @Component({
   selector: 'byol-chart',
@@ -26,14 +27,17 @@ export class ByolChartComponent implements OnInit {
   Shape = Shape;
 
   chartCanvasId = 'canvas'
+  followupPatient;
   constructor(
     private drawPointService: DrawPointService,
     private downloadChartService: DownloadChartService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private patientStateService: PatientStateService
     ){ }
 
   ngOnInit() {
-    this.initCanvas();   
+    this.initCanvas(); 
+    this.addPatientDetailsToCanvas();  
   }
 
   initCanvas(){ 
@@ -41,6 +45,24 @@ export class ByolChartComponent implements OnInit {
     this.ctx = this.canvas.getContext("2d");  
   }
  
+  addPatientDetailsToCanvas(){
+    this.followupPatient = this.patientStateService.followupPatientSubject.value;   
+    // this.ctx.translate(100,100);  
+    // this.ctx.save(); 
+    if(this.followupPatient){
+      this.ctx.rotate(Math.PI);  
+      this.ctx.font = "18px Comic Sans MS";
+      this.ctx.fillStyle = "red"; 
+      this.ctx.fillText(this.followupPatient.name, -1130, -785); 
+      this.ctx.fillText(this.followupPatient.prc, -436, -785); 
+      this.ctx.fillText(this.followupPatient.date, -201, -785); 
+      this.ctx.rotate(Math.PI);  
+
+      this.ctx.restore();
+    }
+    
+  }
+
 
   putImage() {
     this.downloadChartService.downloadImageChart(this.chartCanvasId);
@@ -95,7 +117,7 @@ export class ByolChartComponent implements OnInit {
   selectPoint(event){ 
     if(event){
       if(this.pointExists(event)){
-        this.toastr.error(event.name + ' already selected');
+        this.toastr.error(event.name + ' is already selected');
         return;
       }
       this.selectedPoints.push(event);

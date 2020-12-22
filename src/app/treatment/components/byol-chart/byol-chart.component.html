@@ -13,7 +13,7 @@
     <div class="col">
         <ng-container *ngFor="let protocol of selectedPoints" >
             <span *ngIf="protocol.name" class="badge badge-pill badge-light m-1 px-3 py-2">
-                <i class="fa fa-circle" [style.font-size.px]="protocol.size * 2" [style.color]="protocol.color"></i>
+                <i [ngClass]="protocol.shape === Shape.Square ? 'far fa-square':'fa fa-circle'" [style.font-size.px]="protocol.size * 2" [style.color]="protocol.color"></i>
                 {{protocol.name }}  
                 <button style="border-radius: 50%;color: darkgray; border-color: #8d818126;" (click)="removePoint(protocol)" aria-hidden="true">
                     <i class="fa fa-times"></i>

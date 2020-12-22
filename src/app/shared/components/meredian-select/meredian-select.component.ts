@@ -117,7 +117,8 @@ export class MeredianSelectComponent implements OnInit {
 
   setMethod(method){
     if(this.selectedPoint){
-      this.selectPoint(this.selectedPoint, method.color, method.shape, Sizes.VERYSMALL );
+      const size = method.shape === Shape.Square? Sizes.METHI: Sizes.VERYSMALL;
+      this.selectPoint(this.selectedPoint, method.color, method.shape, size);
       this.selectedPoint = undefined;
     }
   }
