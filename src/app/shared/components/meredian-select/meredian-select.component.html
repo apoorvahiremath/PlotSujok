@@ -1,71 +1,10 @@
 <div class="row mt-4">
     <div class="col-sm-4">
-        <h5>Plot Points through selections</h5>
+        <h5>Plot Meredian Points</h5>
         <hr>
     </div>
 </div>
-<!-- <div class="row">
-    <div class="col-sm-3">
-        <p class="m-2"><i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Blue"></i> Sedate Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedSPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Circle, Sizes.VERYSMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label">
-                        <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Blue"></i>
-                        {{item.name}}</span> 
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Blue"></i>
-                {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="col-sm-3">
-        <p class="m-2"> <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Red"></i>
-            Tone Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedTPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Red,Shape.Circle, Sizes.VERYSMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label"><i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Red"></i>
-                        {{item.name}}</span> 
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <i class="fa fa-circle" [style.font-size.px]="Sizes.VERYSMALL * 2" [style.color]="Color.Red"></i> {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div>
-
-    <div class="col-sm-3">
-        <p class="m-2"><i class="far fa-square" [style.font-size.px]="Sizes.MEDIUM" [style.color]="Color.Blue"></i> Methi Points</p>
-        <ng-select #point [items]="points" [multiple]="true" [closeOnSelect]="false" [searchable]="true"
-            [hideSelected]="true" bindLabel="name" placeholder="Select Points" [(ngModel)]="selectedMPoints"
-            [clearSearchOnAdd]="true" (add)="selectPoint($event, Color.Blue,Shape.Square, Sizes.SMALL)"
-            (remove)="removePoint($event)" [clearable] = "false">
-            <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
-                <div class="ng-value" *ngFor="let item of items">
-                    <span class="ng-value-icon left" (click)="clear(item)" aria-hidden="true">×</span>
-                    <span class="ng-value-label"><i class="far fa-square" [style.font-size.px]="Sizes.MEDIUM" [style.color]="Color.Blue"></i>
-                        {{item.name}}</span> 
-                </div>
-            </ng-template>
-            <ng-template ng-option-tmp let-item="item" let-index="index">
-                <i class="far fa-square" [style.font-size.px]="Sizes.MEDIUM" [style.color]="Color.Blue"></i> {{item.name}}
-            </ng-template>
-        </ng-select>
-    </div>
-</div> -->
-
+ 
 <div class="row">
     <div class="col">
         <button *ngFor="let meredian of meredianList" 
@@ -82,7 +21,7 @@
 </div>
 <div class="row my-3" *ngIf="selectedMeredian">
     <div class="col">
-        <div class="card shadow-sm p-3 mb-5 bg-white rounded"> 
+        <div class="card shadow-sm p-3 mb-1 bg-white rounded"> 
               <h5 class="card-title">{{selectedMeredian.name}} Points</h5> 
               <div class="card-text" *ngIf='selectedMeredianPoints?.length'>
                 <button *ngFor="let point of selectedMeredianPoints" 

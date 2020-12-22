@@ -2,8 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { tcmLeftMeredian } from '../../data/tcm-left';
 import { Sizes } from '../../enums/sizes.enum'
 import { Color } from '../../enums/color.enum'
-import { Shape } from '../../enums/shape.enum'
-import { ToastrService } from 'ngx-toastr';
+import { Shape } from '../../enums/shape.enum' 
 @Component({
   selector: 'meredian-select',
   templateUrl: './meredian-select.component.html',
@@ -13,23 +12,11 @@ export class MeredianSelectComponent implements OnInit {
   points = tcmLeftMeredian;
 
   @Output()
-  pointAdded = new EventEmitter();
-
-  @Output()
-  pointRemoved = new EventEmitter();
-
-
-  //APPROACH1
-
-  selectedSPoints: any[] = [];
-  selectedTPoints: any[] = [];
-  selectedMPoints: any[] = [];
-  
+  pointAdded = new EventEmitter(); 
+   
   Sizes = Sizes;
   Color = Color;
   Shape = Shape;
-
-  //APPROACH2
   
   meredianList = [
     { name :'Lu', color: 'brown'},
@@ -58,47 +45,10 @@ export class MeredianSelectComponent implements OnInit {
    selectedMeredianPoints = []; 
    selectedPoint;
 
-  constructor(private toastr: ToastrService) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  pointExists(newPoint){
-    let found = 0;
-    if(!newPoint)
-      return false;
-    let pointS  = this.selectedSPoints.find(pt=> pt.name === newPoint.name); 
-    
-    if(pointS)
-      found++;
-    
-    let pointT = this.selectedTPoints.find(pt=> pt.name === newPoint.name); 
-    
-    if(pointT)
-      found++;
-
-    let pointM = this.selectedMPoints.find(pt=> pt.name === newPoint.name); 
-
-    if(pointM)
-      found++;
-    
-    return found > 1? true : false;
-  }
-
-  selectPoint(event, color, shape, size){  
-    if(event && !this.pointExists(event)){
-      this.pointAdded.emit({...event, color, shape, size}); 
-    }
-    else{
-      this.toastr.error(event.name + ' already selected');
-    }
-  }
-
-  removePoint(event){  
-    if(event && event.value){
-      this.pointRemoved.emit(event.value);  
-    }
-  }
+  }  
 
   selectMeredian(meredian){
     this.selectedMeredian = meredian;
@@ -121,5 +71,11 @@ export class MeredianSelectComponent implements OnInit {
       this.selectPoint(this.selectedPoint, method.color, method.shape, size);
       this.selectedPoint = undefined;
     }
+  } 
+
+  selectPoint(event, color, shape, size){  
+    if(event){
+      this.pointAdded.emit({...event, color, shape, size}); 
+    } 
   }
 }

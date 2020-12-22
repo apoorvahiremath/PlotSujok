@@ -1,7 +1,7 @@
 
-<meredian-select (pointAdded)="selectPoint($event)" (pointRemoved)="removePoint($event)"></meredian-select>
+<meredian-select (pointAdded)="selectPoint($event)"></meredian-select>
 
-<manual-ploting (setPointerStyle)="setPointer($event)" (clearPointerStyle)="clearPointer()"></manual-ploting>
+<!-- <manual-ploting (setPointerStyle)="setPointer($event)" (clearPointerStyle)="clearPointer()"></manual-ploting> -->
  
 <div class="row mt-4">
     <div class="col-sm-4">
@@ -11,16 +11,23 @@
 </div>
 <div class="row">
     <div class="col">
-        <ng-container *ngFor="let protocol of selectedPoints" >
-            <span *ngIf="protocol.name" class="badge badge-pill badge-light m-1 px-3 py-2">
-                <i [ngClass]="protocol.shape === Shape.Square ? 'far fa-square':'fa fa-circle'" [style.font-size.px]="protocol.size * 2" [style.color]="protocol.color"></i>
-                {{protocol.name }}  
-                <button style="border-radius: 50%;color: darkgray; border-color: #8d818126;" (click)="removePoint(protocol)" aria-hidden="true">
-                    <i class="fa fa-times"></i>
-                </button>
+        <div class="shadow-sm p-3 mb-1 bg-white protocol rounded">
+            <ng-container *ngIf="selectedPoints?.length > 0">
+                <ng-container *ngFor="let protocol of selectedPoints" >
+                    <span *ngIf="protocol.name" class="badge badge-pill badge-light m-1 px-3 py-2">
+                        <i [ngClass]="protocol.shape === Shape.Square ? 'far fa-square':'fa fa-circle'" [style.font-size.px]="protocol.size * 2" [style.color]="protocol.color"></i>
+                        {{protocol.name }}  
+                        <button style="border-radius: 50%;color: darkgray; border-color: #8d818126;" (click)="removePoint(protocol)" aria-hidden="true">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </span>
+                </ng-container>
+            </ng-container>
+            
+            <span *ngIf="!(selectedPoints?.length > 0)" class="badge badge-pill badge-light m-1 px-3 py-2">
+                 Please add treatment
             </span>
-        </ng-container>
-        
+        </div>
     </div>
 </div>
 
